@@ -1,10 +1,13 @@
 const express = require("express");
-
-const { multiplication } = require("./utils/operatons");
+const bodyParser = require('body-parser');
 const phone = require('phone');
+const { multiplication } = require("./utils/operatons");
+
 
 const PORT = 5000;
 const app = express();
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
     res.status(200).send("<html><head> <meta charset=\"utf-8\" /> </head> <body>Home</body></html>");
@@ -17,6 +20,17 @@ app.get("/info", (req, res) => {
 
 app.get("/detail", (req, res) => {
     res.status(200).send("DETAIL");
+});
+
+app.post('/login', (req, res) => {
+    console.log(req.body);
+    const { username, password } = req.body;
+    if(username === "hugo", password === "123456"){
+        res.send({ status: "ok"});
+    }else{
+        res.status(401).send("Acess denied");
+    }
+    
 });
 
 app.get("/phone", (req, res) => {

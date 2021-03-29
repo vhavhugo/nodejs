@@ -13,3 +13,6 @@ npm install nodemon
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
+
+  # api pegar post no body
+  npm i body-parse
